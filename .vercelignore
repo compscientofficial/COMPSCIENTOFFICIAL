@@ -1,0 +1,9 @@
+functions/
+firestore.rules
+deployment_guide.md
+walkthrough.md
+task.md
+implementation_plan.md
+debug_*
+test_*
+find_uid.cjs

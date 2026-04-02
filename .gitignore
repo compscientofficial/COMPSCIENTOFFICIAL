@@ -1,0 +1,11 @@
+node_modules/
+.env
+.npm
+.firebase/
+firebase-debug.log
+.DS_Store
+
+# Debug/Test scripts
+debug_*
+test_*
+find_uid.cjs

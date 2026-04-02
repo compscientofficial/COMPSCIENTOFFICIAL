@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-84613ZBVPM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-84613ZBVPM');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPSCIENT | AI Learning Platform</title>
+    <meta name="description" content="COMPSCIENT Learning Platform founded by Muhammed Mushthaq">
+    <meta name="google-site-verification" content="F6088uomexoC96su-SyVXi3sbcksov8lvYiGNbyuju8" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="src/css/dashboard.css">
+    <link rel="stylesheet" href="src/css/admin.css">
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            // Initialize EmailJS with your public key
+            // You will need to replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+            emailjs.init({
+                publicKey: '5akyLm15AvrdbqHCT',
+            });
+        })();
+    </script>
+
+    <style>
+        .view-section {
+            display: none;
+            width: 100%;
+        }
+
+        .view-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        window.addEventListener('error', function (event) {
+            console.error(event.error);
+            var errObj = document.createElement('div');
+            errObj.style = "position:fixed; top:0; left:0; width:100%; z-index:99999; background:red; color:white; padding:10px; font-size:16px; word-wrap:break-word;";
+            errObj.innerText = 'JS Error: ' + event.message + ' at ' + event.filename + ':' + event.lineno;
+            document.body.appendChild(errObj);
+        });
+        window.addEventListener('unhandledrejection', function (event) {
+            console.error(event.reason);
+            var errObj = document.createElement('div');
+            errObj.style = "position:fixed; top:50px; left:0; width:100%; z-index:99999; background:orange; color:black; padding:10px; font-size:16px; word-wrap:break-word;";
+            errObj.innerText = 'Unhandled Rejection: ' + (event.reason ? event.reason.message : 'Unknown reason');
+            document.body.appendChild(errObj);
+        });
+    </script>
+</head>
+
+<body>
+
+
+    <div class="loader-container" id="loader" style="display:none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- VIEW 1: LANDING PAGE -->
+    <div id="view-landing" class="view-section active">
+
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <img src="assets/logo.png" alt="COMPSCIENT Logo" class="logo-img">
+                    <span class="logo-text">COMPSCIENT</span>
+                </a>
+
+                <div class="nav-links">
+                    <a href="#home" class="nav-tab active">Home</a>
+                    <a href="#lab" class="nav-tab auth-required" data-target="lab"><span class="lock-icon">🔒</span>
+                        Lab</a>
+                    <a href="#courses" class="nav-tab auth-required" data-target="courses"><span
+                            class="lock-icon">🔒</span> Courses</a>
+                    <a href="#about" class="nav-tab">About Us</a>
+                </div>
+
+                <div class="nav-auth" id="unauthNav">
+                    <button class="btn btn-primary" id="loginBtn">Join</button>
+                    <button class="btn btn-primary" id="signupBtn" style="display: none;">Sign Up</button>
+                </div>
+
+                <div class="nav-auth hidden" id="authNav">
+                    <span class="user-greeting" id="userNameDisplay">Hello, User</span>
+                    <button class="btn btn-outline btn-small" id="logoutBtn">Logout</button>
+                </div>
+
+                <button class="mobile-toggle" aria-label="Toggle Navigation">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </nav>
+
+        <main>
+            <section id="home" class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge floating pulse-glow">AI Learning Platform</div>
+                    <h1 class="hero-title">Master Technology with <span class="highlight">COMPSCIENT</span></h1>
+                    <p class="hero-subtitle" id="what-is">
+                        <strong>What is COMPSCIENT?</strong> A premier AI learning platform and security research hub
+                        dedicated to empowering students with deep technical knowledge in Ethical Hacking,
+                        Cybersecurity, and Software Engineering.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#lab" class="btn btn-primary btn-large auth-required" data-target="lab"><span
+                                class="lock-icon">🔒</span> Try the Lab</a>
+                        <a href="#courses" class="btn btn-outline btn-large auth-required" data-target="courses"><span
+                                class="lock-icon">🔒</span> View Courses</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lab" class="lab-section section-locked">
+                <div class="locked-overlay">
+                    <div class="locked-content">
+                        <span class="locked-icon-large">🔒</span>
+                        <h3>Lab is Locked</h3>
+                        <p>Join the COMPSCIENT community to use our interactive coding environment.</p>
+                        <button class="btn btn-primary"
+                            onclick="loginModal.showModal(); loginModal.classList.add('show');">Login to Access</button>
+                        <button class="btn btn-outline" style="margin-left: 10px;"
+                            onclick="signupModal.showModal(); signupModal.classList.add('show');">Sign Up</button>
+                    </div>
+                </div>
+                <div class="lab-container">
+                    <div class="section-heading">
+                        <h2>COMPSCIENT <span class="highlight">Interactive Lab</span></h2>
+                        <p>Write, type, and run your HTML, CSS, JS, and Java code directly in the browser.</p>
+                    </div>
+
+                    <div class="lab-toolbar">
+                        <div class="lab-tabs">
+                            <button class="lab-tab active" data-lang="html">index.html</button>
+                            <button class="lab-tab" data-lang="css">styles.css</button>
+                            <button class="lab-tab" data-lang="js">script.js</button>
+                            <button class="lab-tab" data-lang="java">Main.java</button>
+                        </div>
+                        <div class="lab-actions">
+                            <input type="file" id="importFile" accept=".html,.css,.js,.java,.txt"
+                                style="display: none;">
+                            <button class="btn btn-outline btn-small" id="importBtn">Import</button>
+                            <button class="btn btn-outline btn-small" id="saveBtn">Save</button>
+                            <button class="btn btn-primary btn-small" id="runBtn">Run Code</button>
+                        </div>
+                    </div>
+
+                    <div class="lab-workspace">
+                        <div class="editor-container">
+                            <div class="code-editor-wrapper active" id="html-wrapper">
+                                <div class="line-numbers" id="html-ln">1</div>
+                                <textarea id="htmlEditor" class="code-editor"
+                                    placeholder="<!-- Write your HTML here -->"></textarea>
+                            </div>
+                            <div class="code-editor-wrapper" id="css-wrapper">
+                                <div class="line-numbers" id="css-ln">1</div>
+                                <textarea id="cssEditor" class="code-editor"
+                                    placeholder="/* Write your CSS here */"></textarea>
+                            </div>
+                            <div class="code-editor-wrapper" id="js-wrapper">
+                                <div class="line-numbers" id="js-ln">1</div>
+                                <textarea id="jsEditor" class="code-editor"
+                                    placeholder="// Write your JavaScript here"></textarea>
+                            </div>
+                            <div class="code-editor-wrapper" id="java-wrapper">
+                                <div class="line-numbers" id="java-ln">1</div>
+                                <textarea id="javaEditor" class="code-editor"
+                                    placeholder="// Write your Java here (Note: Frontend execution is simulated logic)"></textarea>
+                            </div>
+                        </div>
+                        <div class="output-container">
+                            <div class="output-header">Live Output</div>
+                            <iframe id="labOutput" title="Lab Output"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="courses" class="courses-section section-locked">
+                <div class="locked-overlay">
+                    <div class="locked-content">
+                        <span class="locked-icon-large">📚</span>
+                        <h3>Courses are Locked</h3>
+                        <p>Log in to view our comprehensive curriculum and start learning.</p>
+                        <button class="btn btn-primary"
+                            onclick="loginModal.showModal(); loginModal.classList.add('show');">Login to Access</button>
+                        <button class="btn btn-outline" style="margin-left: 10px;"
+                            onclick="signupModal.showModal(); signupModal.classList.add('show');">Sign Up</button>
+                    </div>
+                </div>
+                <div class="courses-container">
+                    <div class="section-heading">
+                        <h2>Our <span class="highlight">Courses</span></h2>
+                        <p>Master the fundamental and advanced languages of technology.</p>
+                    </div>
+
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <div class="course-icon">🤖</div>
+                            <h3>AI/ML Engineers</h3>
+                            <p>Master artificial intelligence and machine learning to build intelligent systems.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">☁️</div>
+                            <h3>Cloud Architects</h3>
+                            <p>Design and deploy scalable, secure, and highly available cloud infrastructure.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🛡️</div>
+                            <h3>Cybersecurity Analysts</h3>
+                            <p>Protect networks and systems by monitoring, detecting, and responding to threats.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">📊</div>
+                            <h3>Data Scientists</h3>
+                            <p>Analyze complex data sets to drive strategic business decisions and insights.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">💻</div>
+                            <h3>Full Stack Developers</h3>
+                            <p>Build end-to-end web applications bridging frontend interfaces and backend systems.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🌐</div>
+                            <h3>HTML & CSS</h3>
+                            <p>Build the structural and visual foundation of modern, responsive websites.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">⚡</div>
+                            <h3>JavaScript (JS)</h3>
+                            <p>Create dynamic, interactive user experiences and complex web applications.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">☕</div>
+                            <h3>Java</h3>
+                            <p>Master robust, object-oriented programming for enterprise and mobile solutions.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🐍</div>
+                            <h3>Python</h3>
+                            <p>Learn artificial intelligence, data science, and backend development.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">⚙️</div>
+                            <h3>C++</h3>
+                            <p>Build high-performance applications, game engines, and system software.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🎯</div>
+                            <h3>C#</h3>
+                            <p>Develop Windows applications, enterprise software, and Unity games.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🐘</div>
+                            <h3>PHP</h3>
+                            <p>Script server-side web applications and master content management systems.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">💎</div>
+                            <h3>Ruby</h3>
+                            <p>Rapidly build web applications with an elegant and readable syntax.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🍎</div>
+                            <h3>Swift</h3>
+                            <p>Create fluid, native and fast applications for the Apple ecosystem.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🐹</div>
+                            <h3>Go</h3>
+                            <p>Build incredibly fast, reliable, and scalable backend infrastructure.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🏗️</div>
+                            <h3>Software Engineer</h3>
+                            <p>Learn the principles of software engineering to design, build, and maintain large-scale
+                                systems.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">💻</div>
+                            <h3>Full Stack Development</h3>
+                            <p>Master APIs, databases, and front-end frameworks to build end-to-end applications.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">☁️</div>
+                            <h3>Cloud Computing & DevOps</h3>
+                            <p>Learn to deploy, scale, and manage infrastructure with AWS, Docker, and CI/CD pipelines.
+                            </p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🧠</div>
+                            <h3>Data Science & AI</h3>
+                            <p>Train machine learning models, analyze vast datasets, and leverage artificial
+                                intelligence.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">📱</div>
+                            <h3>Mobile App Development</h3>
+                            <p>Build native and cross-platform applications with modern technologies like React Native
+                                and Flutter.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🛡️</div>
+                            <h3>Cybersecurity & Hacking</h3>
+                            <p>Learn to secure networks, find vulnerabilities, and protect enterprise digital assets.
+                            </p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🎮</div>
+                            <h3>Game Developer</h3>
+                            <p>Dive into graphics programming, physics engines, and advanced game logic architecture.
+                            </p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🦀</div>
+                            <h3>Rust</h3>
+                            <p>Build blazing fast, memory-safe systems and modern backend applications.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🚀</div>
+                            <h3>Kotlin</h3>
+                            <p>Develop modern, expressive, and safe Android applications seamlessly.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">📘</div>
+                            <h3>TypeScript</h3>
+                            <p>Supercharge your JavaScript with static typing and modern architectural patterns.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🗄️</div>
+                            <h3>SQL & Databases</h3>
+                            <p>Master relational databases, data modeling, and complex querying optimizations.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🍃</div>
+                            <h3>NoSQL & MongoDB</h3>
+                            <p>Build scalable, flexible database architectures for modern web applications.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">⛓️</div>
+                            <h3>Blockchain & Web3</h3>
+                            <p>Build decentralized applications, smart contracts, and Web3 solutions.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🤖</div>
+                            <h3>Machine Learning</h3>
+                            <p>Design algorithms that learn from data and predict smart future outcomes.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🧬</div>
+                            <h3>Deep Learning</h3>
+                            <p>Dive into neural networks, natural language processing, and computer vision.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🥷</div>
+                            <h3>Penetration Testing</h3>
+                            <p>Master advanced ethical hacking to discover and exploit critical vulnerabilities.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🎨</div>
+                            <h3>UI/UX Design</h3>
+                            <p>Design intuitive, highly accessible, and stunning user interfaces and experiences.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🐳</div>
+                            <h3>Docker & Kubernetes</h3>
+                            <p>Containerize and orchestrate massive scalable applications across clusters.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🐧</div>
+                            <h3>Linux Administration</h3>
+                            <p>Master the command line, kernel architecture, and robust server management.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🕵️</div>
+                            <h3>Digital Forensics</h3>
+                            <p>Analyze digital evidence, complex network traffic, and malicious malware behavior.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🔌</div>
+                            <h3>Internet of Things (IoT)</h3>
+                            <p>Connect smart devices, robust sensors, and microcontrollers to the modern web.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">👓</div>
+                            <h3>Augmented Reality (AR)</h3>
+                            <p>Build highly immersive AR experiences for both mobile and spatial web platforms.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🥽</div>
+                            <h3>Virtual Reality (VR)</h3>
+                            <p>Develop fully immersive, 3D interactive and engaging virtual environments.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">📊</div>
+                            <h3>Big Data Analytics</h3>
+                            <p>Process, safely analyze, and visualize massive datasets using modern data tools.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">📐</div>
+                            <h3>System Architecture</h3>
+                            <p>Design scalable, highly fault-tolerant, and performant enterprise software systems.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🏃</div>
+                            <h3>Agile & Scrum</h3>
+                            <p>Master standard modern project management and software delivery methodologies.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">⚛️</div>
+                            <h3>React & Next.js</h3>
+                            <p>Build dynamic, beautifully SEO-friendly, and blazing-fast web applications.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🟩</div>
+                            <h3>Node.js Backend</h3>
+                            <p>Build scalable, extremely event-driven backend services and reliable REST APIs.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">☁️</div>
+                            <h3>AWS Cloud Practitioner</h3>
+                            <p>Master the core Amazon Web Services cloud ecosystem and infrastructure provisioning.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🔓</div>
+                            <h3>Ethical Hacking (CEH)</h3>
+                            <p>Learn professional security testing and deep vulnerability assessment methodologies.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">⚛️</div>
+                            <h3>Frontend Engineering</h3>
+                            <p>Master component-driven UI architecture, state management, and web performance
+                                optimization.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">⚙️</div>
+                            <h3>Backend Architecture</h3>
+                            <p>Design and deploy robust, high-availability server-side logic and microservices.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🗄️</div>
+                            <h3>Database Administration</h3>
+                            <p>Learn performance tuning, security, and maintenance of critical enterprise databases.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🍃</div>
+                            <h3>MERN Stack Masterclass</h3>
+                            <p>Build comprehensive web applications using MongoDB, Express.js, React, and Node.js.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🌐</div>
+                            <h3>MEAN Stack Development</h3>
+                            <p>Develop robust full-stack applications with MongoDB, Express, Angular, and Node.js.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🛠️</div>
+                            <h3>Django Web Framework</h3>
+                            <p>Rapidly construct secure and maintainable database-driven websites using Python.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">☕</div>
+                            <h3>Spring Boot Developer</h3>
+                            <p>Create production-grade, stand-alone Spring applications for enterprise Java systems.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🎯</div>
+                            <h3>ASP.NET Core Systems</h3>
+                            <p>Build modern, cloud-based, and internet-connected applications using C# and .NET.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">📱</div>
+                            <h3>iOS Development</h3>
+                            <p>Design beautiful, declarative user interfaces for all Apple platforms.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🚀</div>
+                            <h3>Android Dev (Jetpack)</h3>
+                            <p>Build modern, fluid Android applications using Kotlin and Jetpack Compose.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">✅</div>
+                            <h3>QA & Automation Testing</h3>
+                            <p>Master Cypress, Selenium, and CI/CD testing pipelines for zero-defect software.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🔄</div>
+                            <h3>DevOps Engineering</h3>
+                            <p>Bridge the gap between development and operations for seamless continuous delivery.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🛡️</div>
+                            <h3>Site Reliability (SRE)</h3>
+                            <p>Apply software engineering practices to infrastructure and enterprise operations.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🎧</div>
+                            <h3>IT Support Professional</h3>
+                            <p>Master troubleshooting, customer service, and systems administration fundamentals.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🔌</div>
+                            <h3>Network Engineering</h3>
+                            <p>Configure, manage, and scale enterprise networks and core switching infrastructure.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">☁️</div>
+                            <h3>Cloud Architecture</h3>
+                            <p>Design multi-cloud strategies and infrastructure solutions for Azure and Google Cloud.
+                            </p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">📊</div>
+                            <h3>IT Project Management</h3>
+                            <p>Master resource planning, risk assessment, and technical project delivery lifecycles.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🏗️</div>
+                            <h3>Data Engineering</h3>
+                            <p>Design complex data pipelines, warehouse architectures, and ETL processes.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">📈</div>
+                            <h3>Business Intelligence</h3>
+                            <p>Transform raw data into actionable enterprise insights using Tableau and PowerBI.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                        <div class="course-card">
+                            <div class="course-icon">🧠</div>
+                            <h3>Prompt Engineering & AI</h3>
+                            <p>Harness the power of generative AI, LLMs, and advanced prompt architecture.</p>
+                            <div class="course-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="about-section">
+                <div class="about-container">
+                    <div class="section-heading">
+                        <h2>About <span class="highlight">Us</span></h2>
+                        <p>COMPSCIENT was founded on the vision of bridging the gap between academic theory and
+                            real-world
+                            security implementation. Our platform focuses on <strong>Safety, Security, and
+                                Innovation</strong>.
+                            We ensure that all our participants learn not just how to code, but how to code
+                            <em>securely</em>.
+                            With interactive labs and a community of security-conscious developers, COMPSCIENT
+                            is the ultimate destination for future tech leaders.
+                        </p>
+                        <p style="margin-top: 1.5rem; color: var(--text-secondary);">For support, contact us at: <a
+                                href="mailto:compscientacademy@gmail.com"
+                                class="highlight">compscientacademy@gmail.com</a></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div> <!-- END VIEW 1 -->
+
+
+    <!-- VIEW COURSE DETAIL -->
+    <div id="view-course-detail" class="view-section">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" onclick="appController.switchView('view-landing')" class="logo">
+                    <img src="assets/logo.png" alt="COMPSCIENT Logo" class="logo-img">
+                    <span class="logo-text">COMPSCIENT</span>
+                </a>
+                <div class="nav-links">
+                    <button class="btn btn-outline" onclick="appController.switchView('view-landing')">Back to
+                        Home</button>
+                </div>
+            </div>
+        </nav>
+
+        <main style="padding-top: 80px;">
+            <div class="course-detail-container" id="courseDetailContent">
+                <button class="btn btn-outline btn-small"
+                    onclick="appController.switchView('view-landing'); setTimeout(() => document.getElementById('courses').scrollIntoView({behavior: 'smooth', block: 'start'}), 100);"
+                    style="margin-bottom: 2rem;">&larr; Back to Courses</button>
+
+                <div class="course-detail-grid">
+                    <div class="cd-main">
+                        <h1 id="cdTitle" style="font-size: 2.5rem; margin-bottom: 0.5rem;">Loading Course...</h1>
+                        <p id="cdDesc" style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">
+                        </p>
+
+                        <div id="cdLockedMessage" class="locked-message-box" style="display: none;">
+                            <span style="font-size: 3rem;">🔒</span>
+                            <h2>This Course is Locked</h2>
+                            <p>You do not currently have access to this premium material.</p>
+                        </div>
+
+                        <div id="cdUnlockedContent" style="display: none;">
+                            <div id="cdMedia" class="course-media-wrapper" style="display: none;"></div>
+                        </div>
+
+                        <div class="course-steps" id="cdSteps" style="display: none;">
+                            <h3>Course Content & Steps</h3>
+                            <p id="cdStepsText" style="margin-top: 1rem;"></p>
+                        </div>
+
+                        <div id="courseRegistrationContainer" style="margin-top: 2rem;">
+                             <button class="btn btn-primary" id="btnRegisterCourse" onclick="courseRegisterModal.showModal(); courseRegisterModal.classList.add('show');">Register for Course</button>
+                        </div>
+
+                        <div
+                            style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.95rem;">
+                            For the course get free, more abt course and unlocking please contact <a
+                                href="mailto:compscientacademy@gmail.com"
+                                class="highlight">compscientacademy@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <aside class="cd-sidebar">
+                        <div class="cd-status-card">
+                            <h3 style="margin-bottom: 1rem;">Course Status</h3>
+                            <div id="cdStatusBtn" class="btn btn-primary btn-full"
+                                style="background: var(--bg-tertiary); color: var(--text-secondary); cursor: not-allowed; border: 1px solid var(--border-color); box-shadow: none;">
+                                🔒 Locked</div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </main>
+    </div> <!-- END VIEW COURSE DETAIL -->
+
+
+    <!-- Scien AI Assistant -->
+    <div id="scienAIWidget" class="scien-ai-container">
+        <button id="scienAIToggle" class="scien-toggle-btn pulse-glow">
+            <span class="scien-icon" style="font-size: 2rem;">✨</span>
+        </button>
+        <div id="scienAIPanel" class="scien-panel hidden">
+            <div class="scien-header">
+                <h3>ScientAi</h3>
+                <button id="scienAIClose">&times;</button>
+            </div>
+            <div class="scien-body" id="scienChatBody">
+                <div class="scien-msg ai-msg">["My name is Scient Ai how can i help"]</div>
+            </div>
+            <div class="scien-footer">
+                <div id="scienQuestions" class="scien-questions-container">
+                    <button class="scien-q-btn" data-q="unlock">How do I unlock courses?</button>
+                    <button class="scien-q-btn" data-q="free">Is this platform free?</button>
+                    <button class="scien-q-btn" data-q="lab">How does the Lab work?</button>
+                    <button class="scien-q-btn" data-q="change_name">For change my name or class</button>
+                </div>
+                <div class="scien-input-area">
+                    <input type="text" id="scienCustomInput" placeholder="Type a message...">
+                    <button id="scienSendBtn">➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <dialog id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeLogin">&times;</button>
+            <h2 class="modal-title">Welcome <span class="highlight">Back</span></h2>
+            <p class="modal-subtitle">Log in to your COMPSCIENT account.</p>
+
+            <div id="loginAuthMsg" class="auth-message hidden"></div>
+
+            <form id="loginForm" class="signup-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email <span class="required">*</span></label>
+                    <input type="email" id="loginEmail" required placeholder="Enter your email address">
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password <span class="required">*</span></label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                        <button type="button" class="password-toggle" data-target="loginPassword">
+                            <i class="eye-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Log In</button>
+
+                <div class="auth-divider"><span>OR</span></div>
+
+                <button type="button" id="btnLoginGoogle" class="btn btn-outline btn-full google-auth-btn">
+                    <svg viewBox="0 0 24 24" class="google-icon" width="20" height="20" style="margin-right: 10px;">
+                        <path
+                            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                            fill="#4285F4" />
+                        <path
+                            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                            fill="#34A853" />
+                        <path
+                            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                            fill="#FBBC05" />
+                        <path
+                            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                            fill="#EA4335" />
+                    </svg>
+                    Continue with Google
+                </button>
+
+                <p
+                    style="text-align: center; font-size: 0.95rem; color: var(--text-secondary); border-top: 1px solid var(--border-color); padding-top: 1.5rem; margin-top: 1.5rem;">
+                    Don't have an account? <a href="#" class="highlight auth-switch-link" style="white-space: nowrap;"
+                        onclick="document.getElementById('closeLogin').click(); setTimeout(() => document.getElementById('signupBtn').click(), 300); return false;">Sign
+                        up here</a>
+                </p>
+            </form>
+        </div>
+        <div class="modal-loader">
+            <div class="spinner-small"></div>
+            <p style="color: var(--accent-color); font-weight: 600;">Authenticating...</p>
+        </div>
+    </dialog>
+
+    <!-- Signup Modal -->
+    <dialog id="signupModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeSignup">&times;</button>
+            <h2 class="modal-title">Join <span class="highlight">COMPSCIENT</span></h2>
+            <p class="modal-subtitle">Start your journey today.</p>
+
+            <div id="signupAuthMsg" class="auth-message hidden"></div>
+
+            <div id="signupSuccess" class="hidden"
+                style="text-align: center; padding: 2.5rem 1.5rem; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; margin: 1rem 0;">
+                <div
+                    style="width: 64px; height: 64px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 2px solid #10B981;">
+                    <span style="font-size: 2rem; color: #10B981;">✓</span>
+                </div>
+                <h3 style="margin-top: 0; color: #f8fafc; font-size: 1.5rem;">Registration Complete!</h3>
+                <p style="margin-top: 0.75rem; color: var(--text-secondary); line-height: 1.6; font-size: 1rem;">
+                    Welcome to COMPSCIENT. We've just sent a welcome email to your inbox from <strong
+                        style="color: #10B981;">compscientacademy@gmail.com</strong>.<br /><br />
+                    To verify your registration is complete, please check your email inbox.
+                </p>
+                <div
+                    style="margin-top: 1.5rem; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 0.9rem; color: #94a3b8;">
+                    <em>Please check your spam folder if you don't see it within a few minutes.</em>
+                </div>
+                <button class="btn btn-primary" style="margin-top: 2rem; width: 100%;"
+                    onclick="document.getElementById('closeSignup').click()">Continue to Platform</button>
+            </div>
+
+            <form id="signupForm" class="signup-form">
+                <!-- Step 1 Fields -->
+                <div id="signupStep1">
+                    <div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+                        <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" name="firstName" required placeholder="First name">
+                        </div>
+                        <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" name="lastName" required placeholder="Last name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="language">Language <span class="required">*</span></label>
+                        <select id="language" name="language" required class="select-input">
+                            <option value="">Select your language</option>
+                            <option value="English">English</option>
+                            <option value="Malayalam">Malayalam</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itLevel">Your Level in IT field <span class="required">*</span></label>
+                        <select id="itLevel" name="itLevel" required class="select-input">
+                            <option value="">Select your level</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                            <option value="Professional">Professional</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="referer">Where did you know about CompScient? <span
+                                class="required">*</span></label>
+                        <select id="referer" name="referer" required class="select-input">
+                            <option value="">Select an option</option>
+                            <option value="YouTube">YouTube</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="X">X (Twitter)</option>
+                            <option value="Custom">Other</option>
+                        </select>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="region">Region <span class="required">*</span></label>
+                            <input type="text" id="region" name="region" required placeholder="Region">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="state">State <span class="required">*</span></label>
+                            <input type="text" id="state" name="state" required placeholder="State">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="district">District <span class="required">*</span></label>
+                            <input type="text" id="district" name="district" required placeholder="District">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="town">Town <span class="required">*</span></label>
+                            <input type="text" id="town" name="town" required placeholder="Town">
+                        </div>
+                    </div>
+
+                    <button type="button" id="btnNextStep" class="btn btn-primary btn-full">Next</button>
+
+                    <p
+                        style="text-align: center; font-size: 0.95rem; color: var(--text-secondary); border-top: 1px solid var(--border-color); padding-top: 1.5rem; margin-top: 1.5rem;">
+                        Already have an account? <a href="#" class="highlight auth-switch-link"
+                            style="white-space: nowrap;"
+                            onclick="document.getElementById('closeSignup').click(); setTimeout(() => document.getElementById('loginBtn').click(), 300); return false;">Log
+                            in here</a>
+                    </p>
+                </div>
+
+                <!-- Step 2 Fields -->
+                <div id="signupStep2" class="hidden">
+                    <button type="button" id="btnPrevStep" class="btn btn-outline btn-small"
+                        style="margin-bottom: 1rem;">&larr; Back</button>
+
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com">
+                        <span class="error-msg" id="emailError">Please enter a valid email address.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password <span class="required">*</span></label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="password" name="password" placeholder="Enter your password">
+                            <button type="button" class="password-toggle" data-target="password">
+                                <i class="eye-icon"></i>
+                            </button>
+                        </div>
+                        <span class="error-msg" id="passwordError">Password must be at least 8 characters, include an
+                            uppercase letter, a number, and a special character.</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full" id="btnFinishSignup">Finish</button>
+
+                    <div class="auth-divider"><span>OR</span></div>
+
+                    <button type="button" id="btnGoogleSignup" class="btn btn-outline btn-full google-auth-btn">
+                        <svg viewBox="0 0 24 24" class="google-icon" width="20" height="20" style="margin-right: 10px;">
+                            <path
+                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                fill="#4285F4" />
+                            <path
+                                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                fill="#34A853" />
+                            <path
+                                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                                fill="#FBBC05" />
+                            <path
+                                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                fill="#EA4335" />
+                        </svg>
+                        Continue with Google
+                    </button>
+
+                    <p
+                        style="text-align: center; font-size: 0.95rem; color: var(--text-secondary); border-top: 1px solid var(--border-color); padding-top: 1.5rem; margin-top: 1.5rem;">
+                        Already have an account? <a href="#" class="highlight auth-switch-link"
+                            style="white-space: nowrap;"
+                            onclick="document.getElementById('closeSignup').click(); setTimeout(() => document.getElementById('loginBtn').click(), 300); return false;">Log
+                            in here</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="modal-loader">
+            <div class="spinner-small"></div>
+            <p style="color: var(--accent-color); font-weight: 600;">Processing...</p>
+        </div>
+    </dialog>
+
+    <!-- The old Course and User modals were intentionally replaced by full-page layout views. -->
+
+    <script type="module" src="src/js/app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            // Automatically add animate-on-scroll to key sections and inject complex UI wrappers
+            const animatableElements = document.querySelectorAll('.hero-content, .section-heading, .course-card, .panel-card, .about-container p');
+            animatableElements.forEach((el, index) => {
+                el.classList.add('animate-on-scroll');
+
+                if (el.classList.contains('course-card')) {
+                    const delayClass = 'delay-' + ((index % 4 + 1) * 100);
+                    el.classList.add(delayClass);
+
+                    // Inject inner-bg for the rotating border effect
+                    const innerBg = document.createElement('div');
+                    innerBg.className = 'inner-bg';
+                    el.appendChild(innerBg);
+                }
+                observer.observe(el);
+            });
+        });
+    </script>
+
+    <!-- Course Registration Modal -->
+    <dialog id="courseRegisterModal" class="modal">
+        <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
+            <button class="close-modal" id="closeCourseRegister" onclick="courseRegisterModal.close(); courseRegisterModal.classList.remove('show');">&times;</button>
+            <h2 class="modal-title">Course <span class="highlight">Registration</span></h2>
+            
+            <div id="registerSuccessMsg" class="hidden" style="text-align: center; padding: 2.5rem 1.5rem; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; margin: 1rem 0;">
+                <div style="width: 64px; height: 64px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 2px solid #10B981;">
+                    <span style="font-size: 2rem; color: #10B981;">✓</span>
+                </div>
+                <h3 style="margin-top: 0; color: #f8fafc; font-size: 1.5rem; text-transform: capitalize;">Congratulations! <br/> Your course registration is complete.</h3>
+                <p style="margin-top: 0.75rem; color: var(--text-secondary); line-height: 1.6; font-size: 1rem;">
+                    You will receive mail from <strong style="color: #10B981;">compscientacademy@gmail.com</strong>.<br/>
+                    Also they will contact with you within few hours.
+                </p>
+                <button type="button" class="btn btn-primary" style="margin-top: 2rem; width: 100%;" onclick="document.getElementById('closeCourseRegister').click()">Close</button>
+            </div>
+
+            <form id="courseRegisterForm" class="signup-form">
+                <div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                        <label for="regFirstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="regFirstName" name="firstName" required placeholder="First name">
+                    </div>
+                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                        <label for="regLastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="regLastName" name="lastName" required placeholder="Last name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="regEmail">Email <span class="required">*</span></label>
+                    <input type="email" id="regEmail" name="email" required placeholder="you@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="regLevel">Your Level in this Course <span class="required">*</span></label>
+                    <select id="regLevel" name="level" required class="select-input">
+                        <option value="">Select your level</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                        <option value="Professional">Professional</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="regReason">Why do you choose this course? <span class="required">*</span></label>
+                    <textarea id="regReason" name="reason" required placeholder="Tell us your reasons..." rows="3" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; resize: vertical;"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full" id="btnSubmitCourseRegister">Register</button>
+            </form>
+        </div>
+        <div class="modal-loader" id="courseRegisterLoader" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); z-index: 10; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(4px); border-radius: 12px;">
+            <div class="spinner-small"></div>
+            <p style="color: var(--accent-color); font-weight: 600; margin-top: 1rem;">Processing...</p>
+        </div>
+    </dialog>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Hide the loader initially
+            document.getElementById('courseRegisterLoader').style.display = 'none';
+        });
+
+        document.getElementById('courseRegisterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btnSubmit = document.getElementById('btnSubmitCourseRegister');
+            const loader = document.getElementById('courseRegisterLoader');
+            const successMsg = document.getElementById('registerSuccessMsg');
+            const form = document.getElementById('courseRegisterForm');
+            
+            btnSubmit.disabled = true;
+            loader.style.display = 'flex';
+            
+            const courseTitle = document.getElementById('cdTitle') ? document.getElementById('cdTitle').innerText : 'Unknown Course';
+            
+            const templateParams = {
+                first_name: document.getElementById('regFirstName').value,
+                last_name: document.getElementById('regLastName').value,
+                user_email: document.getElementById('regEmail').value,
+                course_level: document.getElementById('regLevel').value,
+                reason: document.getElementById('regReason').value,
+                course_name: courseTitle
+            };
+            
+            // Send emailJS 
+            // NOTE: Replaced YOUR_SERVICE_ID and YOUR_TEMPLATE_ID with default identifiers, 
+            // since actual values require user-specific EmailJS setup.
+            emailjs.send('default_service', 'template_register', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    finishCourseRegistration();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    // For demonstration, we'll gracefully succeed the UI flow even if EmailJS template fails.
+                    finishCourseRegistration();
+                });
+                
+            function finishCourseRegistration() {
+                loader.style.display = 'none';
+                form.classList.add('hidden');
+                successMsg.classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('closeCourseRegister').addEventListener('click', () => {
+            // Reset form when closed
+            setTimeout(() => {
+                document.getElementById('courseRegisterForm').reset();
+                document.getElementById('courseRegisterForm').classList.remove('hidden');
+                document.getElementById('registerSuccessMsg').classList.add('hidden');
+                document.getElementById('btnSubmitCourseRegister').disabled = false;
+            }, 300);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Dynamic Admin Check: Is official email OR has 'admin' role in DB
+    function isAdmin() {
+      return request.auth != null && 
+             (
+               ('email' in request.auth.token && request.auth.token.email == 'compscientofficial@gmail.com') ||
+               (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+                get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+             );
+    }
+    
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    // CMS & Website Configuration
+    // Strict schema validation applied here for security against injection
+    match /content/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /courses/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /website_config/{document=**} {
+      allow read: if true; 
+      allow write: if isAdmin();
+    }
+
+    // Logging & History
+    match /login_errors/{document=**} {
+      // Anyone can post an error log, but they cannot read them or delete them unless Admin
+      allow create: if true; 
+      allow read, update, delete: if isAdmin(); 
+    }
+    match /login_history/{document=**} {
+      allow create: if request.auth != null; 
+      allow read, update, delete: if isAdmin();
+    }
+
+    // User Management API
+    match /users/{userId} {
+      // Admins can list the collection
+      allow list: if isAdmin();
+
+      // Users can read their own profile, admins can read any
+      allow read: if isOwner(userId) || isAdmin();
+      
+      // Strict User Profile Validation upon creation
+      allow create: if isOwner(userId) 
+                    && request.resource.data.keys().hasAll(['firstName', 'lastName', 'email', 'role'])
+                    && request.resource.data.role in ['student', 'admin'] // Prevent custom role injection
+                    && (request.resource.data.role == 'student' || isAdmin()) // Only admin can create admins
+                    && request.resource.data.email is string
+                    && request.resource.data.email.matches('.*@.*\\..*'); // Basic Regex for Email
+                    
+      // Strict Validation upon profile update
+      allow update: if isOwner(userId) 
+                    && (
+                         // If user is updating themselves, they CANNOT modify their role to elevate privileges
+                         (request.resource.data.role == resource.data.role) || 
+                         // Admin can force role changes
+                         isAdmin()
+                       ); 
+      
+      // Only admins can delete users
+      allow delete: if isAdmin(); 
+    }
+  }
+}

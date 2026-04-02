@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "name": "compscient-platform",
+  "cleanUrls": true,
+  "framework": "vite"
+}
