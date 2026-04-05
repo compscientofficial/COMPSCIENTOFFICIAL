@@ -21,8 +21,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="src/css/dashboard.css">
-    <link rel="stylesheet" href="src/css/admin.css">
 
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -674,11 +672,7 @@
                         <p id="cdDesc" style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">
                         </p>
 
-                        <div id="cdLockedMessage" class="locked-message-box" style="display: none;">
-                            <span style="font-size: 3rem;">🔒</span>
-                            <h2>This Course is Locked</h2>
-                            <p>You do not currently have access to this premium material.</p>
-                        </div>
+
 
                         <div id="cdUnlockedContent" style="display: none;">
                             <div id="cdMedia" class="course-media-wrapper" style="display: none;"></div>
@@ -690,7 +684,7 @@
                         </div>
 
                         <div id="courseRegistrationContainer" style="margin-top: 2rem;">
-                             <button class="btn btn-primary" id="btnRegisterCourse" onclick="courseRegisterModal.showModal(); courseRegisterModal.classList.add('show');">Register for Course</button>
+                             <button class="btn btn-primary" id="btnRegisterCourse" onclick="window.openCourseRegistration()">Register for Course</button>
                         </div>
 
                         <div
@@ -701,47 +695,14 @@
                         </div>
                     </div>
 
-                    <aside class="cd-sidebar">
-                        <div class="cd-status-card">
-                            <h3 style="margin-bottom: 1rem;">Course Status</h3>
-                            <div id="cdStatusBtn" class="btn btn-primary btn-full"
-                                style="background: var(--bg-tertiary); color: var(--text-secondary); cursor: not-allowed; border: 1px solid var(--border-color); box-shadow: none;">
-                                🔒 Locked</div>
-                        </div>
-                    </aside>
+
                 </div>
             </div>
         </main>
     </div> <!-- END VIEW COURSE DETAIL -->
 
 
-    <!-- Scien AI Assistant -->
-    <div id="scienAIWidget" class="scien-ai-container">
-        <button id="scienAIToggle" class="scien-toggle-btn pulse-glow">
-            <span class="scien-icon" style="font-size: 2rem;">✨</span>
-        </button>
-        <div id="scienAIPanel" class="scien-panel hidden">
-            <div class="scien-header">
-                <h3>ScientAi</h3>
-                <button id="scienAIClose">&times;</button>
-            </div>
-            <div class="scien-body" id="scienChatBody">
-                <div class="scien-msg ai-msg">["My name is Scient Ai how can i help"]</div>
-            </div>
-            <div class="scien-footer">
-                <div id="scienQuestions" class="scien-questions-container">
-                    <button class="scien-q-btn" data-q="unlock">How do I unlock courses?</button>
-                    <button class="scien-q-btn" data-q="free">Is this platform free?</button>
-                    <button class="scien-q-btn" data-q="lab">How does the Lab work?</button>
-                    <button class="scien-q-btn" data-q="change_name">For change my name or class</button>
-                </div>
-                <div class="scien-input-area">
-                    <input type="text" id="scienCustomInput" placeholder="Type a message...">
-                    <button id="scienSendBtn">➤</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Modals -->
     <dialog id="loginModal" class="modal">
@@ -819,11 +780,10 @@
                     style="width: 64px; height: 64px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 2px solid #10B981;">
                     <span style="font-size: 2rem; color: #10B981;">✓</span>
                 </div>
-                <h3 style="margin-top: 0; color: #f8fafc; font-size: 1.5rem;">Registration Complete!</h3>
+                <h3 style="margin-top: 0; color: #f8fafc; font-size: 1.5rem;">Your registration completed.</h3>
                 <p style="margin-top: 0.75rem; color: var(--text-secondary); line-height: 1.6; font-size: 1rem;">
-                    Welcome to COMPSCIENT. We've just sent a welcome email to your inbox from <strong
-                        style="color: #10B981;">compscientacademy@gmail.com</strong>.<br /><br />
-                    To verify your registration is complete, please check your email inbox.
+                    Your registered email will get mail from <strong style="color: #10B981;">compscientofficial@gmail.com</strong>.<br/>
+                    Also you will be contacted with <strong style="color: #10B981;">compscientacademy@gmail.com</strong>
                 </p>
                 <div
                     style="margin-top: 1.5rem; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 0.9rem; color: #94a3b8;">
@@ -917,14 +877,14 @@
 
                     <div class="form-group">
                         <label for="email">Email <span class="required">*</span></label>
-                        <input type="email" id="email" name="email" placeholder="you@example.com">
+                        <input type="email" id="email" name="email" required placeholder="you@example.com">
                         <span class="error-msg" id="emailError">Please enter a valid email address.</span>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password <span class="required">*</span></label>
                         <div class="password-input-wrapper">
-                            <input type="password" id="password" name="password" placeholder="Enter your password">
+                            <input type="password" id="password" name="password" required placeholder="Enter your password">
                             <button type="button" class="password-toggle" data-target="password">
                                 <i class="eye-icon"></i>
                             </button>
@@ -1016,10 +976,10 @@
                 <div style="width: 64px; height: 64px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 2px solid #10B981;">
                     <span style="font-size: 2rem; color: #10B981;">✓</span>
                 </div>
-                <h3 style="margin-top: 0; color: #f8fafc; font-size: 1.5rem; text-transform: capitalize;">Congratulations! <br/> Your course registration is complete.</h3>
+                <h3 style="margin-top: 0; color: #f8fafc; font-size: 1.5rem; text-transform: capitalize;">Your registration completed.</h3>
                 <p style="margin-top: 0.75rem; color: var(--text-secondary); line-height: 1.6; font-size: 1rem;">
-                    You will receive mail from <strong style="color: #10B981;">compscientacademy@gmail.com</strong>.<br/>
-                    Also they will contact with you within few hours.
+                    Your registered email will get mail from <strong style="color: #10B981;">compscientofficial@gmail.com</strong>.<br/>
+                    Also you will be contacted with <strong style="color: #10B981;">compscientacademy@gmail.com</strong>
                 </p>
                 <button type="button" class="btn btn-primary" style="margin-top: 2rem; width: 100%;" onclick="document.getElementById('closeCourseRegister').click()">Close</button>
             </div>
@@ -1060,69 +1020,13 @@
                 <button type="submit" class="btn btn-primary btn-full" id="btnSubmitCourseRegister">Register</button>
             </form>
         </div>
-        <div class="modal-loader" id="courseRegisterLoader" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); z-index: 10; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(4px); border-radius: 12px;">
+        <div class="modal-loader" id="courseRegisterLoader">
             <div class="spinner-small"></div>
-            <p style="color: var(--accent-color); font-weight: 600; margin-top: 1rem;">Processing...</p>
+            <p style="color: var(--accent-color); font-weight: 600;">Processing...</p>
         </div>
     </dialog>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Hide the loader initially
-            document.getElementById('courseRegisterLoader').style.display = 'none';
-        });
 
-        document.getElementById('courseRegisterForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const btnSubmit = document.getElementById('btnSubmitCourseRegister');
-            const loader = document.getElementById('courseRegisterLoader');
-            const successMsg = document.getElementById('registerSuccessMsg');
-            const form = document.getElementById('courseRegisterForm');
-            
-            btnSubmit.disabled = true;
-            loader.style.display = 'flex';
-            
-            const courseTitle = document.getElementById('cdTitle') ? document.getElementById('cdTitle').innerText : 'Unknown Course';
-            
-            const templateParams = {
-                first_name: document.getElementById('regFirstName').value,
-                last_name: document.getElementById('regLastName').value,
-                user_email: document.getElementById('regEmail').value,
-                course_level: document.getElementById('regLevel').value,
-                reason: document.getElementById('regReason').value,
-                course_name: courseTitle
-            };
-            
-            // Send emailJS 
-            // NOTE: Replaced YOUR_SERVICE_ID and YOUR_TEMPLATE_ID with default identifiers, 
-            // since actual values require user-specific EmailJS setup.
-            emailjs.send('default_service', 'template_register', templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    finishCourseRegistration();
-                }, function(error) {
-                    console.log('FAILED...', error);
-                    // For demonstration, we'll gracefully succeed the UI flow even if EmailJS template fails.
-                    finishCourseRegistration();
-                });
-                
-            function finishCourseRegistration() {
-                loader.style.display = 'none';
-                form.classList.add('hidden');
-                successMsg.classList.remove('hidden');
-            }
-        });
 
-        document.getElementById('closeCourseRegister').addEventListener('click', () => {
-            // Reset form when closed
-            setTimeout(() => {
-                document.getElementById('courseRegisterForm').reset();
-                document.getElementById('courseRegisterForm').classList.remove('hidden');
-                document.getElementById('registerSuccessMsg').classList.add('hidden');
-                document.getElementById('btnSubmitCourseRegister').disabled = false;
-            }, 300);
-        });
-    </script>
 </body>
 </html>

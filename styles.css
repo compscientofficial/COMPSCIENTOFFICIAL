@@ -1264,179 +1264,11 @@ body {
     animation: pulseGlow 3s infinite;
 }
 
-/* Scien AI Assistant */
-.scien-ai-container {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 9999;
-}
-
-.scien-toggle-btn {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--accent-gradient);
-    border: none;
-    color: white;
-    font-size: 1.8rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px var(--accent-glow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
-}
-
-.scien-toggle-btn:hover {
-    transform: scale(1.1);
-}
-
-.scien-panel {
-    position: absolute;
-    bottom: 80px;
-    right: 0;
-    width: 320px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transform-origin: bottom right;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.scien-panel.hidden {
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
-}
-
-.scien-header {
-    background: var(--bg-tertiary);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.scien-header h3 { font-size: 1.1rem; }
-
-#scienAIClose {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.scien-body {
-    padding: 1rem;
-    height: 250px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.scien-msg {
-    padding: 0.8rem 1rem;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    max-width: 85%;
-    line-height: 1.4;
-}
-
-.ai-msg {
-    background: rgba(59, 130, 246, 0.15);
-    color: var(--text-primary);
-    align-self: flex-start;
-    border-bottom-left-radius: 2px;
-}
-
-.user-msg {
-    background: var(--accent-gradient);
-    color: white;
-    align-self: flex-end;
-    border-bottom-right-radius: 2px;
-}
-
-.scien-footer {
-    padding: 1rem;
-    background: var(--bg-tertiary);
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.scien-questions-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.scien-input-area {
-    display: flex;
-    gap: 0.5rem;
-}
-
-#scienCustomInput {
-    flex: 1;
-    background: var(--bg-color);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    border-radius: 6px;
-    padding: 0.5rem;
-    font-size: 0.85rem;
-}
-
-#scienCustomInput:focus {
-    outline: none;
-    border-color: var(--accent-color);
-}
-
-#scienSendBtn {
-    background: var(--accent-color);
-    border: none;
-    color: white;
-    padding: 0 0.8rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-#scienSendBtn:hover {
-    background: var(--accent-secondary);
-}
-
-.scien-q-btn {
-    background: var(--bg-color);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 0.5rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.2s ease;
-}
-
-.scien-q-btn:hover {
-    background: var(--accent-color);
-    color: white;
-    border-color: var(--accent-color);
-}
-
 /* Course Detail Split Layout */
 .course-detail-grid {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 2rem;
-    align-items: start;
+    display: block;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .cd-status-card {
@@ -1459,6 +1291,14 @@ body {
 
 @media (max-width: 768px) {
     .course-detail-grid { grid-template-columns: 1fr; }
-    .scien-panel { width: calc(100vw - 4em); right: 0; }
+
+@keyframes slideInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
-
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
