@@ -136,16 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const user = auth.currentUser;
             
             // Route Guards
-            if ((viewId === "view-course-detail") && !user) {
-                console.warn("Blocked: Authentication required.");
-                const loginModal = document.getElementById("loginModal");
-                if (loginModal) {
-                    loginModal.showModal();
-                    loginModal.classList.add("show");
-                }
-                window.appController.switchView("view-landing");
-                return;
-            }
+            // (Course details are public, but registration inside them remains locked)
 
             // Perform Switch
             document.querySelectorAll(".view-section").forEach(s => s.classList.remove("active"));
@@ -644,8 +635,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (nameDisplay) nameDisplay.textContent = `Hello, ${user.displayName || user.email.split("@")[0]}`;
             
             document.querySelectorAll(".lock-icon").forEach(icon => icon.style.display = "none");
-            document.querySelectorAll("#lab, #courses").forEach(sec => sec.classList.remove("section-locked"));
-            document.querySelectorAll(".course-card").forEach(card => card.classList.remove("locked"));
+            document.querySelectorAll("#lab").forEach(sec => sec.classList.remove("section-locked"));
 
             try {
                 const isAdmin = user.email === "compscientofficial@gmail.com";
@@ -668,8 +658,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (authNav) authNav.classList.add("hidden");
             if (unauthNav) unauthNav.classList.remove("hidden");
             document.querySelectorAll(".lock-icon").forEach(icon => icon.style.display = "inline");
-            document.querySelectorAll("#lab, #courses").forEach(sec => sec.classList.add("section-locked"));
-            document.querySelectorAll(".course-card").forEach(card => card.classList.add("locked"));
+            document.querySelectorAll("#lab").forEach(sec => sec.classList.add("section-locked"));
             window.appController.switchView("view-landing");
         }
     });

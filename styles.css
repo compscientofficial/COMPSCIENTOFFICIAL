@@ -1291,6 +1291,7 @@ body {
 
 @media (max-width: 768px) {
     .course-detail-grid { grid-template-columns: 1fr; }
+}
 
 @keyframes slideInUp {
     from { transform: translateY(20px); opacity: 0; }

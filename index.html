@@ -19,6 +19,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Security Module -->
+    <script src="src/js/security.js"></script>
 
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -96,8 +99,7 @@
                     <a href="#home" class="nav-tab active">Home</a>
                     <a href="#lab" class="nav-tab auth-required" data-target="lab"><span class="lock-icon">🔒</span>
                         Lab</a>
-                    <a href="#courses" class="nav-tab auth-required" data-target="courses"><span
-                            class="lock-icon">🔒</span> Courses</a>
+                    <a href="#courses" class="nav-tab">Courses</a>
                     <a href="#about" class="nav-tab">About Us</a>
                 </div>
 
@@ -132,8 +134,7 @@
                     <div class="hero-cta">
                         <a href="#lab" class="btn btn-primary btn-large auth-required" data-target="lab"><span
                                 class="lock-icon">🔒</span> Try the Lab</a>
-                        <a href="#courses" class="btn btn-outline btn-large auth-required" data-target="courses"><span
-                                class="lock-icon">🔒</span> View Courses</a>
+                        <a href="#courses" class="btn btn-outline btn-large" data-target="courses">View Courses</a>
                     </div>
                 </div>
             </section>
@@ -203,18 +204,7 @@
                 </div>
             </section>
 
-            <section id="courses" class="courses-section section-locked">
-                <div class="locked-overlay">
-                    <div class="locked-content">
-                        <span class="locked-icon-large">📚</span>
-                        <h3>Courses are Locked</h3>
-                        <p>Log in to view our comprehensive curriculum and start learning.</p>
-                        <button class="btn btn-primary"
-                            onclick="loginModal.showModal(); loginModal.classList.add('show');">Login to Access</button>
-                        <button class="btn btn-outline" style="margin-left: 10px;"
-                            onclick="signupModal.showModal(); signupModal.classList.add('show');">Sign Up</button>
-                    </div>
-                </div>
+            <section id="courses" class="courses-section">
                 <div class="courses-container">
                     <div class="section-heading">
                         <h2>Our <span class="highlight">Courses</span></h2>
