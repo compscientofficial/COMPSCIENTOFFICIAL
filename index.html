@@ -3,11 +3,14 @@
 
 <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WSKFGSZT');</script>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WSKFGSZT');</script>
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- Security Module -->
     <script src="src/js/security.js"></script>
 
@@ -76,8 +79,8 @@
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WSKFGSZT"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WSKFGSZT" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
 
@@ -97,8 +100,7 @@
 
                 <div class="nav-links">
                     <a href="#home" class="nav-tab active">Home</a>
-                    <a href="#lab" class="nav-tab auth-required" data-target="lab"><span class="lock-icon">🔒</span>
-                        Lab</a>
+                    <a href="#lab" class="nav-tab" data-target="lab">Lab</a>
                     <a href="#courses" class="nav-tab">Courses</a>
                     <a href="#about" class="nav-tab">About Us</a>
                 </div>
@@ -132,25 +134,13 @@
                         Cybersecurity, and Software Engineering.
                     </p>
                     <div class="hero-cta">
-                        <a href="#lab" class="btn btn-primary btn-large auth-required" data-target="lab"><span
-                                class="lock-icon">🔒</span> Try the Lab</a>
+                        <a href="#lab" class="btn btn-primary btn-large" data-target="lab">Try the Lab</a>
                         <a href="#courses" class="btn btn-outline btn-large" data-target="courses">View Courses</a>
                     </div>
                 </div>
             </section>
 
-            <section id="lab" class="lab-section section-locked">
-                <div class="locked-overlay">
-                    <div class="locked-content">
-                        <span class="locked-icon-large">🔒</span>
-                        <h3>Lab is Locked</h3>
-                        <p>Join the COMPSCIENT community to use our interactive coding environment.</p>
-                        <button class="btn btn-primary"
-                            onclick="loginModal.showModal(); loginModal.classList.add('show');">Login to Access</button>
-                        <button class="btn btn-outline" style="margin-left: 10px;"
-                            onclick="signupModal.showModal(); signupModal.classList.add('show');">Sign Up</button>
-                    </div>
-                </div>
+            <section id="lab" class="lab-section">
                 <div class="lab-container">
                     <div class="section-heading">
                         <h2>COMPSCIENT <span class="highlight">Interactive Lab</span></h2>
@@ -614,25 +604,116 @@
                 </div>
             </section>
 
-            <section id="about" class="about-section">
-                <div class="about-container">
-                    <div class="section-heading">
-                        <h2>About <span class="highlight">Us</span></h2>
-                        <p>COMPSCIENT was founded on the vision of bridging the gap between academic theory and
-                            real-world
-                            security implementation. Our platform focuses on <strong>Safety, Security, and
-                                Innovation</strong>.
-                            We ensure that all our participants learn not just how to code, but how to code
-                            <em>securely</em>.
-                            With interactive labs and a community of security-conscious developers, COMPSCIENT
-                            is the ultimate destination for future tech leaders.
-                        </p>
-                        <p style="margin-top: 1.5rem; color: var(--text-secondary);">For support, contact us at: <a
-                                href="mailto:compscientacademy@gmail.com"
-                                class="highlight">compscientacademy@gmail.com</a></p>
+            <footer id="about" class="site-footer">
+                <div class="footer-container">
+                    <div class="footer-grid">
+                        <!-- About Section -->
+                        <div class="footer-about">
+                            <a href="#" class="logo footer-logo">
+                                <img src="assets/logo.png" alt="COMPSCIENT Logo" class="logo-img">
+                                <span class="logo-text">COMPSCIENT</span>
+                            </a>
+                            <p class="footer-desc">
+                                Bridging the gap between academic theory and real-world security implementation.
+                                We focus on <strong>Safety, Security, and Innovation</strong>, teaching not just how to
+                                code, but how to code <em>securely</em>.
+                                With interactive labs and a community of security-conscious developers, COMPSCIENT is
+                                the ultimate destination for future tech leaders.
+                            </p>
+                            <div class="social-links">
+                                <a href="#" class="social-icon" aria-label="YouTube">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.13 1 12 1 12s0 3.87.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.87 23 12 23 12s0-3.87-.46-5.58z">
+                                        </path>
+                                        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-icon" aria-label="Instagram">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-icon" aria-label="Facebook">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3.61l.39-4H14V7a1 1 0 0 1 1-1h3z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-icon" aria-label="Twitter">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Platform Links -->
+                        <div class="footer-links-group">
+                            <h4 class="footer-heading">Platform</h4>
+                            <ul class="footer-links">
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#lab" data-target="lab">Interactive Lab</a></li>
+                                <li><a href="#courses">Courses</a></li>
+                                <li><a href="#"
+                                        onclick="document.getElementById('signupBtn').click(); return false;">Join
+                                        Community</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="footer-links-group">
+                            <h4 class="footer-heading">Contact Info</h4>
+                            <ul class="footer-contact">
+                                <li>
+                                    <svg class="contact-icon" viewBox="0 0 24 24" width="18" height="18"
+                                        stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                        </path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                    <a href="mailto:compscientacademy@gmail.com"
+                                        class="highlight">compscientacademy@gmail.com</a>
+                                </li>
+                                <li>
+                                    <svg class="contact-icon" viewBox="0 0 24 24" width="18" height="18"
+                                        stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <span>Kozhikode, Kerala. PIN 673004</span>
+                                </li>
+                            </ul>
+                            <div class="footer-cta" style="margin-top: 1.5rem;">
+                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Ready
+                                    to start learning?</p>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="document.getElementById('loginBtn').click()">Log In</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <p>&copy; 2026 COMPSCIENT. All rights reserved.</p>
+                        <div class="footer-bottom-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </footer>
         </main>
     </div> <!-- END VIEW 1 -->
 
@@ -676,7 +757,8 @@
                         </div>
 
                         <div id="courseRegistrationContainer" style="margin-top: 2rem;">
-                             <button class="btn btn-primary" id="btnRegisterCourse" onclick="window.openCourseRegistration()">Register for Course</button>
+                            <button class="btn btn-primary" id="btnRegisterCourse"
+                                onclick="window.openCourseRegistration()">Register for Course</button>
                         </div>
 
                         <div
@@ -774,7 +856,8 @@
                 </div>
                 <h3 style="margin-top: 0; color: #f8fafc; font-size: 1.5rem;">Your registration completed.</h3>
                 <p style="margin-top: 0.75rem; color: var(--text-secondary); line-height: 1.6; font-size: 1rem;">
-                    Your registered email will get mail from <strong style="color: #10B981;">compscientofficial@gmail.com</strong>.<br/>
+                    Your registered email will get mail from <strong
+                        style="color: #10B981;">compscientofficial@gmail.com</strong>.<br />
                     Also you will be contacted with <strong style="color: #10B981;">compscientacademy@gmail.com</strong>
                 </p>
                 <div
@@ -876,7 +959,8 @@
                     <div class="form-group">
                         <label for="password">Password <span class="required">*</span></label>
                         <div class="password-input-wrapper">
-                            <input type="password" id="password" name="password" required placeholder="Enter your password">
+                            <input type="password" id="password" name="password" required
+                                placeholder="Enter your password">
                             <button type="button" class="password-toggle" data-target="password">
                                 <i class="eye-icon"></i>
                             </button>
@@ -961,19 +1045,25 @@
     <!-- Course Registration Modal -->
     <dialog id="courseRegisterModal" class="modal">
         <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
-            <button class="close-modal" id="closeCourseRegister" onclick="courseRegisterModal.close(); courseRegisterModal.classList.remove('show');">&times;</button>
+            <button class="close-modal" id="closeCourseRegister"
+                onclick="courseRegisterModal.close(); courseRegisterModal.classList.remove('show');">&times;</button>
             <h2 class="modal-title">Course <span class="highlight">Registration</span></h2>
-            
-            <div id="registerSuccessMsg" class="hidden" style="text-align: center; padding: 2.5rem 1.5rem; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; margin: 1rem 0;">
-                <div style="width: 64px; height: 64px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 2px solid #10B981;">
+
+            <div id="registerSuccessMsg" class="hidden"
+                style="text-align: center; padding: 2.5rem 1.5rem; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; margin: 1rem 0;">
+                <div
+                    style="width: 64px; height: 64px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 2px solid #10B981;">
                     <span style="font-size: 2rem; color: #10B981;">✓</span>
                 </div>
-                <h3 style="margin-top: 0; color: #f8fafc; font-size: 1.5rem; text-transform: capitalize;">Your registration completed.</h3>
+                <h3 style="margin-top: 0; color: #f8fafc; font-size: 1.5rem; text-transform: capitalize;">Your
+                    registration completed.</h3>
                 <p style="margin-top: 0.75rem; color: var(--text-secondary); line-height: 1.6; font-size: 1rem;">
-                    Your registered email will get mail from <strong style="color: #10B981;">compscientofficial@gmail.com</strong>.<br/>
+                    Your registered email will get mail from <strong
+                        style="color: #10B981;">compscientofficial@gmail.com</strong>.<br />
                     Also you will be contacted with <strong style="color: #10B981;">compscientacademy@gmail.com</strong>
                 </p>
-                <button type="button" class="btn btn-primary" style="margin-top: 2rem; width: 100%;" onclick="document.getElementById('closeCourseRegister').click()">Close</button>
+                <button type="button" class="btn btn-primary" style="margin-top: 2rem; width: 100%;"
+                    onclick="document.getElementById('closeCourseRegister').click()">Close</button>
             </div>
 
             <form id="courseRegisterForm" class="signup-form">
@@ -1006,7 +1096,8 @@
 
                 <div class="form-group">
                     <label for="regReason">Why do you choose this course? <span class="required">*</span></label>
-                    <textarea id="regReason" name="reason" required placeholder="Tell us your reasons..." rows="3" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; resize: vertical;"></textarea>
+                    <textarea id="regReason" name="reason" required placeholder="Tell us your reasons..." rows="3"
+                        style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; resize: vertical;"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-full" id="btnSubmitCourseRegister">Register</button>
@@ -1021,4 +1112,5 @@
 
 
 </body>
+
 </html>
