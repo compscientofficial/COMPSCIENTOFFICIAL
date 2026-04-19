@@ -628,11 +628,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const unauthNav = document.getElementById("unauthNav");
         const authNav = document.getElementById("authNav");
         const nameDisplay = document.getElementById("userNameDisplay");
+        const footerCtaText = document.getElementById("footerCtaText");
+        const footerLoginBtn = document.getElementById("footerLoginBtn");
 
         if (user) {
             if (unauthNav) unauthNav.classList.add("hidden");
             if (authNav) authNav.classList.remove("hidden");
             if (nameDisplay) nameDisplay.textContent = `Hello, ${user.displayName || user.email.split("@")[0]}`;
+            
+            // Update Footer for Logged In state
+            if (footerCtaText) footerCtaText.textContent = "LOGED";
+            if (footerLoginBtn) footerLoginBtn.style.display = "none";
             
             document.querySelectorAll(".lock-icon").forEach(icon => icon.style.display = "none");
             document.querySelectorAll("#lab").forEach(sec => sec.classList.remove("section-locked"));
@@ -657,8 +663,13 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             if (authNav) authNav.classList.add("hidden");
             if (unauthNav) unauthNav.classList.remove("hidden");
+            
+            // Reset Footer for Unauthenticated state
+            if (footerCtaText) footerCtaText.textContent = "Ready to start learning?";
+            if (footerLoginBtn) footerLoginBtn.style.display = "inline-block";
+
             document.querySelectorAll(".lock-icon").forEach(icon => icon.style.display = "inline");
-            document.querySelectorAll("#lab").forEach(sec => sec.classList.add("section-locked"));
+            // Removed: document.querySelectorAll("#lab").forEach(sec => sec.classList.add("section-locked"));
             window.appController.switchView("view-landing");
         }
     });
